@@ -1,31 +1,27 @@
 class Fighter {
     constructor(obj) {
-        let name;
+        let name, damage, hp, strength, agility;
         Object.defineProperty(this, 'name', {
             configurable: false,
             writable: false
         });
 
         Object.defineProperty(this, 'damage', {
-            value: obj.damage,
             configurable: false,
             writable: false
         });
         
         Object.defineProperty(this, 'hp', {
-            value: obj.hp,
             configurable: false,
             writable: true
         });
 
         Object.defineProperty(this, 'strength', {
-            value: obj.strength,
             configurable: false,
             writable: false
         });
 
         Object.defineProperty(this, 'agility', {
-            value: obj.agility,
             configurable: false,
             writable: false
         });
@@ -43,44 +39,53 @@ class Fighter {
         });
 
         name = obj.name;
+        damage = obj.damage;
+        strength  = obj.strength;
+        agility = obj.agility;
+        hp = obj.hp;
 
         this.getName = function() {
             return name;
         }
+
+        this.getDamage = function() {
+            return damage;
+        }
+
+        this.getStrength = function() {
+            return strength;
+        }
+
+        this.getAgility = function() {
+            return agility;
+        }
+
+        this.getHealth = function()  {
+            return hp;
+        }
+
+        this.heal = function(points){
+            hp += points;
+        }
+        this.dealDamage = function(points) {
+            hp -= points;
+            if (hp < 0) {
+                hp = 0;
+            }
+        }
     }
 
-    getDamage() {
-        return this.damage;
-    }
-    getStrength() {
-        return this.strength;
-    }
-    getAgility() {
-        return this.agility;
-    }
-    getHealth() {
-        return this.hp;
-    }
     attack(defender) {
         let randomCalc = Math.random() * 100;
         if (randomCalc > defender.getAgility() + defender.getStrength()) {
-            console.log(`${this.getName()} makes ${this.damage} damage to ${defender.getName()}`);
-            defender.dealDamage(this.damage);
+            console.log(`${this.getName()} makes ${this.getDamage()} damage to ${defender.getName()}`);
+            defender.dealDamage(this.getDamage());
         } else {
             console.log(`${this.getName()} attack missed`);
         }
     }
     logCombatHistory() {
         console.log(`name: ${this.getName()}, wins: ${this.wins}, losses: ${this.losses}`);
-    }
-    heal(points) {
-        this.hp += points;
-    }
-    dealDamage(points) {
-        this.hp -= points;
-        if (this.hp < 0) {
-            this.hp = 0;
-        }
     }
     addWin() {
         this.wins++;
