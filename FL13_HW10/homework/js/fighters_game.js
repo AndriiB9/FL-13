@@ -1,11 +1,11 @@
 class Fighter {
     constructor(obj) {
+        let name;
         Object.defineProperty(this, 'name', {
-            value: obj.name,
             configurable: false,
             writable: false
         });
-        
+
         Object.defineProperty(this, 'damage', {
             value: obj.damage,
             configurable: false,
@@ -41,10 +41,14 @@ class Fighter {
             configurable: false,
             writable: true
         });
+
+        name = obj.name;
+
+        this.getName = function() {
+            return name;
+        }
     }
-    getName() {
-        return this.name;
-    }
+
     getDamage() {
         return this.damage;
     }
@@ -60,14 +64,14 @@ class Fighter {
     attack(defender) {
         let randomCalc = Math.random() * 100;
         if (randomCalc > defender.getAgility() + defender.getStrength()) {
-            console.log(`${this.name} makes ${this.damage} damage to ${defender.getName()}`);
+            console.log(`${this.getName()} makes ${this.damage} damage to ${defender.getName()}`);
             defender.dealDamage(this.damage);
         } else {
-            console.log(`${this.name} attack missed`);
+            console.log(`${this.getName()} attack missed`);
         }
     }
     logCombatHistory() {
-        console.log(`name: ${this.name}, wins: ${this.wins}, losses: ${this.losses}`);
+        console.log(`name: ${this.getName()}, wins: ${this.wins}, losses: ${this.losses}`);
     }
     heal(points) {
         this.hp += points;
@@ -106,8 +110,4 @@ function battle(fighter, fighter2) {
 
 let fighter = new Fighter({ name: 'Maximus', damage: 25, hp: 100, strength: 30, agility: 25 });
 let fighter2 = new Fighter({ name: 'Commodus', damage: 20, hp: 90, strength: 25, agility: 20 });
-console.log(fighter.getStrength());
-console.log(fighter.getAgility());
-console.log(fighter.getHealth());
-fighter.attack(fighter2);
 battle(fighter2, fighter);
