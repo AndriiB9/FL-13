@@ -1,0 +1,67 @@
+.buttonAdd {
+    margin: 30px;
+    width: 60px;
+}
+#root {
+    display: flex;
+    justify-content: space-around;
+}
+li {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px;
+    font-style: italic;
+    font-weight: bold;
+}
+label {
+    width: 500px;
+}
+li:hover {
+    background-color: lightblue;
+}
+.left { 
+    width: 45%;
+    height: 600px;
+    border: 1px solid lightgray;
+    padding: 20px;
+    background-color: lightgreen;   
+}
+.right {
+    width: 45%;
+    height: 600px;
+    border: 1px solid lightgray;
+    padding: 20px;
+    background-color: lightgreen;
+}
+form {
+    border: 1px solid blue;
+    padding: 20px;
+    background-color: lightgrey;
+}
+label {
+    margin: 20px;
+}
+input {
+    margin: 20px;
+    width: 300px;
+}
+textarea {
+    margin: 20px;
+    width: 300px;
+}
+.invalidInput {
+    border: 1px solid red;
+}
+.rightContent {
+    display: none;
+}
+.img {
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 300px;
+    height: 200px;
+}
+.saveBtn, .cancel {
+    display: inline-block;
+    width: 100px;
+}
