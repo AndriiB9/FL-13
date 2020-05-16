@@ -104,17 +104,17 @@ for (let li of liArr) {
   li.oncontextmenu = function () {
     event.preventDefault();
     contextMenu.style.display = 'block';
+    contextMenu.style.left = `${event.clientX}px`
+    contextMenu.style.top = `${event.clientY}px`
     let del = document.getElementsByClassName('menu-option-delete');
     del[0].onclick = function () {
       li.remove();
+      contextMenu.style.display = 'none';
     }
     let rename = document.getElementsByClassName('menu-option');
     rename[0].onclick = function () {
       li.contentEditable = true;
-      let range = new Range();
-      range.setStart(li, 1);
-      range.setEnd(li, 2);
-      document.getSelection().addRange(range);
+      contextMenu.style.display = 'none';
     }
   }
 }
