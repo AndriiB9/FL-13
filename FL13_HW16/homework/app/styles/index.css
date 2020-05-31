@@ -1,0 +1,10 @@
+label {
+    display: inline-block;
+    width: 70px;
+}
+#loadingLabel {
+    display: none;
+}
+#users {
+    margin-top: 10px;
+}
